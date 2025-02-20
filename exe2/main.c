@@ -5,7 +5,6 @@
 const int BTN_PIN_R = 28;
 const int LED_PIN_R = 4;
 volatile int btn_flag = 0;
-volatile int i = 0;
 
 void btn_callback(uint gpio, uint32_t events) {
     if (events == GPIO_IRQ_EDGE_FALL) {
@@ -26,6 +25,8 @@ int main() {
     gpio_set_irq_enabled_with_callback(
         BTN_PIN_R, GPIO_IRQ_EDGE_FALL, true, &btn_callback);
 
+    
+    int i = 0;    
     while (true) {
         if (btn_flag) {
             btn_flag = 0;
